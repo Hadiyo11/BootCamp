@@ -87,11 +87,11 @@
 //     make: "Audi",
 //     year: "2021",
 // };
-//  let property= "color"
-//  myCar[property]="red"
-// let property1 = "for sale"
-// myCar[property1]  = "R5000000"
-// console.log(myCar)
+ let property= "color"
+ myCar[property]="red"
+let property1 = "for sale"
+myCar[property1]  = "R5000000"
+console.log(myCar)
 
 let people = {friends:[]};
 let friend1 = {fname:"Anna", lname:"Miller", id:10};
