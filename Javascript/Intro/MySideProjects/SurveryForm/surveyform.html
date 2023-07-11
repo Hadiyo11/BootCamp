@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="surveyform.css" />
+</head>
+<body>
+  <h1 id="title">Survey Form</h1>
+  <!-- <p id="description">Welcome to Sunnghill Coding School! Please fill out this form and you will get a confirmation email when you are done.</p> -->
+  <form id="survey-form">
+    <p id="description">Welcome to Sunnghill Coding School! Please fill out this form and you will get a confirmation email when you are done.</p>
+    <fieldset>
+    <label id="name-label" for="name">Name: <input type="text" id="name" placeholder="Enter your name" name="fname" required></label>
+    <label id="email-label" for="email">Email: <input type="email" id="email" placeholder="Enter your email address" name="myEmail" required></label>
+   <label id="number-label" for="number">Number: <input type="number" id="number" min="10" max="16" placeholder="Enter your number" required></label>
+   </fieldset>
+   <fieldset>
+   <p><strong>How old are you?</strong></p>
+   <select id="dropdown">
+     <option>select one</option>
+     <option>above the age of 18</option>
+     <option>below the age of 18</option>
+     </select>
+<p>What is your favourite coding language?</p>
+<select id="dropdown">
+  <option>select one</p>
+  <option>Python</option>
+  <option>Java</option>
+  <option>C++</option>
+  </select>
+  </fieldset>
+  <fieldset>
+  <p><strong>Which bootcamp do you want to join?</strong></p>
+  <input type="radio" name="group" value="option1" id="option1">
+  <label for="option1">Web developer</label>
+  <br>
+  <input type="radio" name="group" value="option2" id="option2">
+  <label for="option2">Java developer</label>
+  <br>
+  <input type="radio" name="group" value="option3" id="option3">
+  <label for="option3">UX design</label>
+    </fieldset>
+     <label for="terms-and-conditions" required name="terms-and-conditions" ><input id="terms-and-conditions" type="checkbox" value="Yes" > I accept the terms and conditions</label>
+     <label for="terms-and-conditions" required name="terms-and-conditions"><input id="terms-and-conditions" type="checkbox" value="Yes"> I agree to share my information with third parties</label>
+      <textarea rows="1" cols="50"> In this survey form, you will be answering questions regarding your journey in technology</textarea>
+     <button id="submit">Submit</button>
+    </form>
+</body>
+
+</html>
