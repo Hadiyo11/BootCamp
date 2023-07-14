@@ -54,7 +54,7 @@
 // class Person {
 //     #firstName;
 //     #lastName;
-//     constructor(firstName, lastName) { 
+//     constructor(firstName, lastName) {
 //         if(firstName.length>1){
 //             this.#firstName = firstName;
 //         } else{
@@ -71,37 +71,109 @@
 //   console.log(friend1.fullname());
 //   console.log(friend2.fullname());
 
-
 //getters and setters
-class Person {
-    #firstname;
-    #lastname;
-    constructor(firstname, lastname) {
-        if(firstname.length > 1){
-            this.#firstname = firstname;
-    } else {
-        console.log("firstname is too short")
+// class Person {
+//     #firstname;
+//     #lastname;
+//     constructor(firstname, lastname) {
+//         if(firstname.length > 1){
+//             this.#firstname = firstname;
+//     } else {
+//         console.log("firstname is too short")
+//     }
+//     if(lastname> 1){
+//         this.#lastname = lastname;
+// } else {
+//     console.log('lastname is too short')
+// }
+//     }
+//     get firstname() {
+//     return this.#firstname;
+//     }
+//     set firstname(firstname) {
+//         this.#firstname = firstname;
+//         }
+//     get lastname() {
+//     return this.#lastname;
+//     }
+//     set lastname(lastname) {
+//         this.#lastname = lastname;
+//         }
+//    }
+//    let p = new Person("Maria", "Saga");
+// console.log(p.firstname);
+
+//INHERITANCE
+//super calls constructor of parent
+// class Vehicle {
+//   color;
+//   currentSpeed;
+//   maxSpeed;
+//   constructor(color, currentSpeed, maxSpeed) {
+//     this.color = color;
+//     this.currentSpeed = currentSpeed;
+//     this.maxSpeed = maxSpeed;
+//   }
+//   move() {
+//     console.log("moving at", this.currentSpeed);
+//   }
+//   accelerate(amount) {
+//     this.currentSpeed += amount;
+//   }
+// }
+
+// class Motorcycle extends Vehicle {
+//   constructor(color, currentSpeed, maxSpeed, fuel) {
+//     super(color, currentSpeed, maxSpeed);
+//     this.fuel = fuel;
+//   }
+//   doWheelie() {
+//     console.log("Driving on one wheel!");
+//   }
+// }
+// let motor = new Motorcycle("Red", 100, 120, "Diesel");
+// console.log(motor.color);
+// motor.move();
+// motor.accelerate(10);
+// motor.move();
+
+//Prototype
+// class Person {
+//   constructor(firstname, lastname) {
+//     this.firstname = firstname;
+//     this.lastname = lastname;
+//   }
+//   greet() {
+//     console.log("Hi there!");
+//   }
+// }
+// Person.prototype.introduce = function () {
+//   console.log(`Hi, I'm, ${this.firstname}`);
+// };
+// Person.prototype.favouriteColor = `green`;
+// let p = new Person(`Joe`, `Dean`);
+// p.introduce();
+// console.log(`${p.firstname} has a favourite color of ${p.favouriteColor}`);
+
+class Animal {
+    typeOfAnimal;
+    sounds;
+    constructor(typeOfAnimal, sounds){
+        this.typeOfAnimal = typeOfAnimal;
+        this.sounds = sounds;
     }
-    if(lastname> 1){
-        this.#lastname = lastname; 
-} else {
-    console.log('lastname is too short')
+    sound() {
+        console.log(`A ${this.typeOfAnimal} sounds like this ${this.sounds}`);
+    }
 }
-    }
-    get firstname() {
-    return this.#firstname;
-    }
-    set firstname(firstname) {
-        this.#firstname = firstname;
-        }
-    get lastname() {
-    return this.#lastname;
-    }
-    set lastname(lastname) {
-        this.#lastname = lastname;
-        }
-   }
-   let p = new Person("Maria", "Saga");
-console.log(p.firstname);
+Animal.prototype.move = function() {
+    console.log(` This ${this.typeOfAnimal} is running`);
+};
 
-
+let goat = new Animal(`goat`, `meee`);
+let cat = new Animal(`cat`, `mewwww`);
+goat.move();
+cat.move();
+cat.sound();
+goat.sound();
+console.log(cat);
