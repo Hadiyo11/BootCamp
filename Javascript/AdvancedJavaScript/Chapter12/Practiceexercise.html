@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 12.9</title>
+  </head>
+  <body>
+    <script>
+      let shoppingList = [
+        {
+          food: "beef stew",
+          drinks: "juice",
+        },
+        {
+          food: "cake",
+          drinks: "wine",
+        },
+      ];
+
+      let stringList = JSON.stringify(shoppingList);
+      console.log(stringList);
+
+      let objectList = JSON.parse(stringList);
+      objectList.forEach((e) => {
+        console.log(`${e.food} and ${e.drinks}`);
+      });
+    </script>
+  </body>
+</html>
+
+<!--!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parsing a JSON</title>
+  </head>
+  <body>
+    <script>
+      let dog = {
+        name: "wiesje",
+        breed: "dachshund",
+      };
+      let strdog = JSON.stringify(dog);
+      console.log(typeof strdog);
+      console.log(strdog);//look like an object but it is actually a string
+    </script>
+  </body>
+</html-->
+
+<!--!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parsing a JSON</title>
+  </head>
+  <body>
+    <script>
+      let str = '{"name": "Maaike", "age": 30}';
+      let obj = JSON.parse(str);
+      console.log(obj.name, "is", obj.age);//converts it to a string
+      console.log(JSON.stringify(str));//coverts it to an object
+    </script>
+  </body>
+</html-->
+
+<!--!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practise exercise 12.8</title>
+</head>
+<body>
+    <script>
+        let shoppingList = [
+            {
+                "food" : "beef stew",
+                "drinks" : "juice"
+            }, 
+            {
+                "food" : "cake",
+                "drinks" : "wine"
+            }
+        ];
+        print();
+        function print(){
+            shoppingList.forEach((e)=>{
+                console.log(`${e.food} and ${e.drinks}`)
+            })
+        }
+    </script>
+</body>
+</html-->
+
+<!--!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript exercise 12.7</title>
+    <style>
+      .ready {
+        background-color: #ddd;
+        color: red;
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <input placeholder="New Item" value="test item" maxlength="30" />
+      <button>Add</button>
+    </div>
+    <ul class="output"></ul>
+    <script>
+      const userTask = document.querySelector(".main input");
+      const addBtn = document.querySelector(".main button");
+      const output = document.querySelector(".output");
+      const tasks = JSON.parse(localStorage.getItem("tasklist")) || [];
+      addBtn.addEventListener("click", createListItem);
+      if (tasks.length > 0) {
+        tasks.forEach((task) => {
+          genItem(task.val, task.checked);
+        });
+      }
+      function saveTasks() {
+        localStorage.setItem("tasklist", JSON.stringify(tasks));
+      }
+      function buildTasks() {
+        tasks.length = 0;
+        const curList = output.querySelectorAll("li");
+        curList.forEach((el) => {
+          const tempTask = {
+            val: el.textContent,
+            checked: false,
+          };
+          if (el.classList.contains("ready")) {
+            tempTask.checked = true;
+          }
+          tasks.push(tempTask);
+        });
+        saveTasks();
+      }
+      function genItem(val, complete) {
+        const li = document.createElement("li");
+        const temp = document.createTextNode(val);
+        li.appendChild(temp);
+        output.append(li);
+        userTask.value = "";
+        if (complete) {
+          li.classList.add("ready");
+        }
+        li.addEventListener("click", (e) => {
+          li.classList.toggle("ready");
+          buildTasks();
+        });
+        return val;
+      }
+      function createListItem() {
+        const val = userTask.value;
+        if (val.length > 0) {
+          const myObj = {
+            val: genItem(val, false),
+            checked: false,
+          };
+          tasks.push(myObj);
+          saveTasks();
+        }
+      }
+    </script>
+  </body>
+</html-->
+
+<!--!DOCTYPE html>
+<html>
+  <body>
+    <div id="stored"></div>
+    <script>
+      let message = "Hello storage4!";
+      localStorage.setItem("example3", message);
+      if (localStorage.getItem("example4")) {
+        document.getElementById("stored").innerHTML =
+          localStorage.getItem("example4");
+      }
+      console.log(window.localStorage.getItem(window.localStorage.key(0)));
+    </script>
+  </body>
+</html-->
+
+<!--!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 12.5</title>
+  </head>
+  <body>
+    <script>
+        try {
+            test(100);
+            test('hi')
+        } catch(e){
+                console.log(e)
+            }
+        
+      function test(val) {
+        if (isNaN(val)) {
+          throw `${val} is not a number`;
+        } else {
+          console.log("Got a number " + val);
+        }
+      }
+    </script>
+  </body>
+</html-->
+
+<!--!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practical 12.3</title>
+  </head>
+  <body>
+    <script>
+      console.log("Last argument", returnLastArguement(1, 200, 566, 1000));
+      function returnLastArguement() {
+        let lastOne;
+
+        for (let el of arguments) {
+          console.log(el);
+          lastOne = el;
+        }
+        return lastOne; 
+      }
+    </script>
+  </body>
+</html-->
+
+<!--!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=script, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function test() {
+        a = "nice";
+        arguments[1] = "JavaScript";
+        console.log("first:", arguments[0]);
+        console.log("second:", arguments[1]);
+        console.log("third:", arguments[2]);
+      }
+      test("fun", "js", "secrets");
+    </script>
+  </body>
+</html-->
+
+<!--!doctype html>
+<html>
+<head>
+ <title>JavaScript Course</title>
+</head>
+<body>
+ <div class="output"></div>
+ <input type="text" placeholder="Enter Email">
+ <button>Check</button>
+ <script>
+    let output = document.querySelector(".output");
+    let email = document.querySelector("input");
+    let button = document.querySelector("button");
+    button.addEventListener("click", validateEmail);
+
+    function validateEmail(){
+        userEmail = email.value;
+        let emailPattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/g;
+if(userEmail.match(emailPattern)){
+    output.textContent = "valid Email";
+    output.style.color = "green";
+} else {
+    output.textContent = "invalid Email";
+    output.style.color = "red";
+}
+    }
+
+
+ </script>
+</body>
+</html-->
+
+<!--!DOCTYPE html>
+<html>
+  <head>
+    <title>Complete JavaScript Course</title>
+  </head>
+  <body>
+    <div id="output">Complete JavaScript Course Practice 12.1</div>
+    Search for:
+    <input id="sText" type="text" />
+    <br />
+    Replace with:
+    <input id="rText" type="text" />
+    <br />
+    <button>Replace</button>
+    <script>
+        let output = document.getElementById("output");
+        let findValue = document.getElementById("sText");
+        let replaceValue = document.getElementById("rText");
+
+        document.querySelector("button").addEventListener("click", lookUp);
+
+        function lookUp(){
+            let s = output.textContent;
+            let rt = replaceValue.value;
+            let replace1 = new RegExp(findValue.value, "gi");
+            if (s.match(replace1)){
+                let newValue = s.replace(replace1, rt);
+                output.textContent = newValue;
+            }
+           
+        }
+
+    </script>
+  </body>
+</html-->
