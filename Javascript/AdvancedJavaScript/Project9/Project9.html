@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 10 DOM</title>
+  </head>
+  <body>
+    <div class="output">
+      <h1>Hello</h1>
+      <div>Test</div>
+      <ul>
+        <li id="one">One</li>
+        <li class="red">Two</li>
+      </ul>
+      <div>Test</div>
+    </div>
+    <script>
+      let output = document.querySelector(".output");
+      let mainList = output.querySelector("ul");
+      mainList.id = "mainList";
+      console.log(mainList);
+      let myElements = document.querySelectorAll("div");
+      console.log(myElements)
+      for (let i = 0; i < myElements.length; i++) {
+        console.log(myElements[i].tagName);
+        myElements[i].id = "id" + (i + 1);
+        if (i % 2) {
+          myElements[i].style.color = "red";
+        } else {
+          myElements[i].style.color = "blue";
+        }
+      }
+    </script>
+  </body>
+</html>

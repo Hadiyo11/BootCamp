@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Practice 10.2</title>
+  </head>
+  <body>
+    <div id="message">Complete JavaScript Course</div>
+    <div>
+      <input type="text" id="addFriend" />
+      <input type="button" id="addNew" value="Add Friend" />
+    </div>
+    <table id="output"></table>
+    <script>
+        window.onload = build;
+      let myArray = ["Laurence", "Mike", "John", "Larry", "Maaike"];
+      let myMessage = document.getElementById("message");
+      let newInput = document.getElementById("addFriend");
+      let btn = document.getElementById("addNew");
+      let myTable = document.getElementById("output");
+      btn.onclick = function () {
+        let newFriend = newInput.value;
+        myNewFriends(newFriend, myArray.length, 0);
+        myArray.push(newFriend);
+      };
+
+      function build() {
+        myArray.forEach((item, index) => {
+          myNewFriends(item, index, 0);
+        });
+      }
+      function myNewFriends(name, index, counter) {
+        let tr = document.createElement("tr");
+        let td1 = document.createElement("td");
+        td1.classList.add("box");
+        td1.textContent = index + 1;
+        let td2 = document.createElement("td");
+        td2.textContent = name;
+        let td3 = document.createElement("td");
+        td3.textContent = counter;
+        tr.append(td1);
+        tr.append(td2);
+        tr.append(td3);
+        tr.onclick = function () {
+          console.log(tr.lastChild);
+          let val = Number(tr.lastChild.textContent);
+          val++;
+          tr.lastChild.textContent = val;
+        };
+        myTable.appendChild(tr);
+      }
+    </script>
+  </body>
+</html>
