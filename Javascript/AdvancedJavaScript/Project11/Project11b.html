@@ -39,8 +39,14 @@
       });
       
       function starRate(e){
-        output.innerHTML = e.target.starValue;
-        
+        output.innerHTML = `You received ${e.target.starValue} stars`;
+        stars.forEach((index, star) => {
+          if(index < e.target.starValue){
+           star.classList.add("orange");
+          } else {
+           star.classList.remove("orange");
+          }
+        });
       }
     </script>
   </body>
