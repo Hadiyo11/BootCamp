@@ -1,13 +1,13 @@
 let map = null;
-let ourCoords = {
+let ourCoords = {//object for the coordinates the location of Wickedly Smart HQ
   latitude: 47.624851,
   longitude: -122.52099,
 };
 let watchId = null;
 
-window.onload = getMyLocation;
+window.onload = getMyLocation;//call the function getMyLocation as soon as the browswer loads
 
-function getMyLocation() {
+function getMyLocation() {//want to check if broswer supports geolocation api
   if (navigator.geolocation) {
     // navigator.geolocation.getCurrentPosition(displayLocation, displayError);
     let watchButton = document.getElementById("watch");
@@ -15,24 +15,25 @@ function getMyLocation() {
     let clearWatchButton = document.getElementById("clearWatch");
     clearWatchButton.onclick = clearWatch; //stop it
   } else {
-    alert("Oops, no geolocation support");
+    alert("Oops, no geolocation support");//if broswer doesnt support it
   }
 }
 
-function displayLocation(position) {
-  let latitude = position.coords.latitude;
+function displayLocation(position) {//handler function that is called when the browser has a location so we pass it a position object
+  let latitude = position.coords.latitude;//get our location from the position object that has coords property
   let longitude = position.coords.longitude;
 
   let div = document.getElementById("location");
   div.innerHTML = "You are at Latitude: " + latitude + ", Longitude: " + longitude;
   div.innerHTML += " (with " + position.coords.accuracy + " meters accuracy)";
+  //use accuracy property of position and append onto the end of the <div> innerhtml
 
-  let km = computeDistance(position.coords, ourCoords);
+  let km = computeDistance(position.coords, ourCoords);//pass it my position and Wickledyly smart location
   let distance = document.getElementById("distance");
   distance.innerHTML = "You are " + km + " km from the WickedlySmart HQ";
 
   if (map == null) {
-    showMap(position.coords);
+    showMap(position.coords);//we call this function
   } else {
     scrollMapToPosition(position.coords);
   }
@@ -43,7 +44,7 @@ function displayLocation(position) {
 // Uses the Spherical Law of Cosines to find the distance
 // between two lat/long points
 //
-function computeDistance(startCoords, destCoords) {
+function computeDistance(startCoords, destCoords) {//takes 2 coordinates, a start coordinate and a destination coordinate and returns the distance in km
   let startLatRads = degreesToRadians(startCoords.latitude);
   let startLongRads = degreesToRadians(startCoords.longitude);
   let destLatRads = degreesToRadians(destCoords.latitude);
@@ -72,14 +73,16 @@ function showMap(coords) {
   let googleLatAndLong = new google.maps.LatLng(
     coords.latitude,
     coords.longitude
-  );
+  );//there is a constructor that takes the Lat and Long and returns an object that holds them both
   let mapOptions = {
     zoom: 10,
-    center: googleLatAndLong,
+    center: googleLatAndLong,//want the map to be centered around this location
     mapTypeId: google.maps.MapTypeId.ROADMAP,
   };
   let mapDiv = document.getElementById("map");
   map = new google.maps.Map(mapDiv, mapOptions);
+  //assign map object to global variable map
+  //Here’s another constructor from Google’s API, which takes an element and our options and creates and returns a map object
 
   // add the user marker
   let title = "Your Location";
@@ -92,40 +95,42 @@ function addMarker(map, latlong, title, content) {
     position: latlong,
     map: map,
     title: title,
-    clickable: true,
+    clickable: true,//set it true because we want to display info window when it is clicked
   };
   let marker = new google.maps.Marker(markerOptions);
-
+//create a marker object using a constructor from google's api and pass it the markerOption object we just created
   let infoWindowOptions = {
     content: content,
-    position: latlong,
+    position: latlong,//we needed the lat and long
   };
 
   let infoWindow = new google.maps.InfoWindow(infoWindowOptions);
 
   google.maps.event.addListener(marker, "click", function () {
     infoWindow.open(map);
-  });
+  });//When the marker is clicked, 
+  //this function is called and the 
+  //infoWindow opens on the map
 }
-
-function displayError(error) {
-  let errorTypes = {
+//call this function if we are failing to get geolocation
+function displayError(error) {//pass an error
+  let errorTypes = {//error object contains a code property from 0-3
     0: "Unknown error",
     1: "Permission denied",
     2: "Position is not available",
     3: "Request timeout",
   };
-  let errorMessage = errorTypes[error.code];
+  let errorMessage = errorTypes[error.code];//assign the error code property to errorMessage
   if (error.code == 0 || error.code == 2) {
     errorMessage = errorMessage + " " + error.message;
   }
   let div = document.getElementById("location");
-  div.innerHTML = errorMessage;
+  div.innerHTML = errorMessage;//let user know their error
 }
 //to watch the user's location
 function watchLocation() {
   watchId = navigator.geolocation.watchPosition(displayLocation, displayError); //browser doesnt take more than 5000ms to get location
-}
+}//pass the watchPosition function a success handler ie dispayLocation and the exsisting error handler
 
 function scrollMapToPosition(coords) {
   let latitude = coords.latitude;
@@ -133,6 +138,7 @@ function scrollMapToPosition(coords) {
 
   let latlong = new google.maps.LatLng(latitude, longitude);
   map.panTo(latlong);
+  //The panTo method of the map takes the LatLng object and scrolls the map so your new location is at the center of the map
 
   // add the new marker
   addMarker(
@@ -147,7 +153,9 @@ function clearWatch() {
   if (watchId) {
     navigator.geolocation.clearWatch(watchId); //stops the watching
     watchId = null;
-  }
+  }//call the geolocation.clearWatch 
+  //method, passing in the watchId. 
+  //This stops the watching
 }
 
 // let options = { enableHighAccuracy: true, timeout: 100, maximumAge: 0 };
