@@ -10,33 +10,33 @@ window.onload = function() {
 
 function previewHandler() {
 	let canvas = document.getElementById("tshirtCanvas");
-	let context = canvas.getContext("2d");
+	let context = canvas.getContext("2d");//ask for its 2d drawing
 
 	fillBackgroundColor(canvas, context);//to get a clean background each time
 
-	var selectObj = document.getElementById("shape");
-	var index = selectObj.selectedIndex;
-	var shape = selectObj[index].value;
+	let selectObj = document.getElementById("shape");
+	let index = selectObj.selectedIndex;
+	let shape = selectObj[index].value;
 
 	if (shape == "squares") {
-		for (var squares = 0; squares < 20; squares++) {
+		for (let squares = 0; squares < 20; squares++) {
 			drawSquare(canvas, context);
 		}
 	}
 	else if (shape == "circles") {
-		for (var circles = 0; circles < 20; circles++) {
+		for (let circles = 0; circles < 20; circles++) {
 			drawCircle(canvas, context);
 		}
 	}
-	drawText(canvas, context);
+	drawText(canvas, context);//pass it the context and the canvas
 	drawBird(canvas, context);
 }
 
 // This is where we'll set the background color
 function fillBackgroundColor(canvas, context) {
-	var selectObj = document.getElementById("backgroundColor");
-	var index = selectObj.selectedIndex;
-	var bgColor = selectObj[index].value;
+	let selectObj = document.getElementById("backgroundColor");
+	let index = selectObj.selectedIndex;
+	let bgColor = selectObj[index].value;
 
 	context.fillStyle = bgColor;
 	context.fillRect(0, 0, canvas.width, canvas.height);
@@ -45,9 +45,9 @@ function fillBackgroundColor(canvas, context) {
 
 // Draws a square at a random location
 function drawSquare(canvas, context) {
-	var w = Math.floor(Math.random() * 40);    
-	var x = Math.floor(Math.random() * canvas.width);
-	var y = Math.floor(Math.random() * canvas.height);
+	let w = Math.floor(Math.random() * 40);//largest width must be 50    
+	let x = Math.floor(Math.random() * canvas.width);//based on the canvas width
+	let y = Math.floor(Math.random() * canvas.height);
 
 	// Use this fillStyle instead if you want to try
 	// "twitter blue"
@@ -58,12 +58,12 @@ function drawSquare(canvas, context) {
 
 // Draws a circle at a random location
 function drawCircle(canvas, context) {
-	var radius = Math.floor(Math.random() * 40);
-	var x = Math.floor(Math.random() * canvas.width);
-	var y = Math.floor(Math.random() * canvas.height);
+	let radius = Math.floor(Math.random() * 40);//largest radius is 40
+	let x = Math.floor(Math.random() * canvas.width);
+	let y = Math.floor(Math.random() * canvas.height);
 
 	context.beginPath();
-	context.arc(x, y, radius, 0, degreesToRadians(360), true);
+	context.arc(x, y, radius, 0, degreesToRadians(360), true);//true is counterclockwise
 
 	// Use this fillStyle instead if you want to try
 	// "twitter blue"
@@ -74,9 +74,9 @@ function drawCircle(canvas, context) {
 
 // draws all the text, including the tweet
 function drawText(canvas, context) {
-	var selectObj = document.getElementById("foregroundColor");
-	var index = selectObj.selectedIndex;
-	var fgColor = selectObj[index].value;
+	let selectObj = document.getElementById("foregroundColor");
+	let index = selectObj.selectedIndex;
+	let fgColor = selectObj[index].value;
 
 	context.fillStyle = fgColor;
 	context.font = "bold 1em sans-serif";
@@ -85,26 +85,11 @@ function drawText(canvas, context) {
 
 
 	// draw the tweet!
-	selectObj = document.getElementById("tweets");
+	selectObj = document.getElementById("tweets");//grab selected option
 	index = selectObj.selectedIndex;
 	var tweet = selectObj[index].value;
-	context.font = "italic 1.2em serif";
-	context.fillText(tweet, 30, 100);
-
-	// If you want to try splitIntoLines to 
-	// handle longer tweets, uncomment this code
-	// and replace the context.fillText line above
-/*
-	if (tweet.length > 60) {
-		var tweetLines = splitIntoLines(tweet);
-		for (var i = 0; i < tweetLines.length; i++) {
-			context.fillText(tweetLines[i], 30, 70+(i*25));
-		}
-	}
-	else {
-		context.fillText(tweet, 30, 100);
-	}
-*/
+	context.font = "italic 1.2em serif";//select the font
+	context.fillText(tweet, 30, 100);//draw it a position of 30,100
 
 	context.font = "bold 1em sans-serif";
 	context.textAlign = "right";
@@ -114,10 +99,10 @@ function drawText(canvas, context) {
 
 // draws the twitter bird image
 function drawBird(canvas, context) {
-	var twitterBird = new Image();
-	twitterBird.src = "twitterBird.png";
+	let twitterBird = new Image();//create a new object image
+	twitterBird.src = "twitterBird.png";//set source to be the image of tweitter bird
 	twitterBird.onload = function() {
-		context.drawImage(twitterBird, 20, 120, 70, 70);
+		context.drawImage(twitterBird, 20, 120, 70, 70);//draw the image to the canvas
 	};
 
 }
@@ -128,14 +113,14 @@ function degreesToRadians(degrees) {
 
 
 function updateTweets(tweets) {
-	var tweetsSelection = document.getElementById("tweets");
+	let tweetsSelection = document.getElementById("tweets");
 
 	// add all tweets to the tweets menu
-	for (var i = 0; i < tweets.length; i++) {
+	for (let i = 0; i < tweets.length; i++) {
 		tweet = tweets[i];
 
 		// create option
-		var option = document.createElement("option");
+		let option = document.createElement("option");
 		option.text = tweet.text;
 
 		// strip any quotes out of the tweet so they don't mess up our option
@@ -167,7 +152,7 @@ function splitIntoLines(str) {
 
 // Easter Egg
 function makeImage() {
-	var canvas = document.getElementById("tshirtCanvas");
+	let canvas = document.getElementById("tshirtCanvas");
 	canvas.onclick = function () {
 		window.location = canvas.toDataURL('image/png');
 	};
