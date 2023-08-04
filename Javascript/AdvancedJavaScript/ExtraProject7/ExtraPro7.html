@@ -1,15 +1,71 @@
 <!doctype html>
 <html lang="en">
 <head>
- <title>Look What I Drew</title>
- <meta charset="utf-8">
+ <title>TweetShirt</title>
+ <meta charset="utf-8" />
  <style>
-    canvas {
-        border: 1px solid black;
-    }
+ canvas {border: 1px solid black;}
  </style>
+ <script src="tweetshirt.js"></script>
 </head>
 <body>
-<canvas id="lookwhatIdrew" width="600" height="200"></canvas>
+ <h1>TweetShirt</h1>
+ <canvas width="600" height="200" id="tshirtCanvas">
+ <p>Please upgrade your browser to use TweetShirt!</p>
+ </canvas>
+ <form>
+    <p>
+        <label for="backgroundColor">Select background color:</label>
+        <select id="backgroundColor">
+            <option value="white" selected="selected">White</option>
+            <option value="black">Black</option>
+        </select>
+    </p>
+    <p>
+        <label for="shape">Circles or squares?</label>
+        <select id="shape">
+            <option value="none" selected="selected">Neither</option>
+            <option value="circles">Circles</option>
+            <option value="squares">Squares</option>
+        </select>
+    </p>
+    <p>
+        <label for="foregroundColor">Select text color:</label>
+        <select id="foregroundColor">
+            <option value="black" selected="selected">Black</option>
+            <option value="white">White</option>
+        </select>
+    </p>
+    <p>
+        <label for="tweets">Pick a tweet:</label>
+        <select id="tweets"></select>
+    </p>
+    <p>
+        <input type="button"  id="previewButton" value="Preview">
+    </p>
+ </form>
 </body>
 </html>
+
+<!--!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Look What I Drew</title>
+    <meta charset="utf-8" />
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        let canvas = document.getElementById("tshirtCanvas");
+        let context = canvas.getContext("2d");
+        context.fillRect(10, 10, 100, 100);//fillReact creates a rectangle at the xy positon
+      };
+    </script>
+  </head>
+  <body>
+    <canvas width="600" height="200" id="tshirtCanvas"></canvas>
+  </body>
+</html-->
