@@ -11,7 +11,17 @@ window.onload = function () {
   video.load();
   video.play();
   alert("Playing " + video.currentSrc);
+  video.addEventListener("error", errorHandler, false)
 };
+
+function errorHandler() {
+  let video = document.getElementById("video");
+  if (video.error) {
+  video.poster = "images/technicaldifficulties.jpg";
+  alert(video.error.code);
+  }
+ }
+ 
 
 function nextVideo() {
   position++;
