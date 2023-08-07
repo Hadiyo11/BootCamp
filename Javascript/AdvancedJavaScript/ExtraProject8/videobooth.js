@@ -80,3 +80,8 @@ function pushUnpushButtons(idToPush, idarrayToUnpush) {
     }
     }
 }   
+function isButtonPushed(id){
+    let anchor = document.getElementById("id");
+    let theClass = anchor.getAttribute("class");
+    return (theClass.indexOf("selected")>=0);
+}
