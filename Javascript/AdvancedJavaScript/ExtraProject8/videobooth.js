@@ -9,7 +9,7 @@ window.onload = function () {
   let video = document.getElementById("video");
   video.src = videos.video1 + getFormatExtension();
   //set the first video in the array with a playable extension
-  video.load(); //video is ready to load
+  video.load(); //video is ready to load when user clicks play
 
   let controlLinks = document.querySelectorAll("a.control");
   for (let i = 0; i < controlLinks.length; i++) {
@@ -23,8 +23,8 @@ window.onload = function () {
   for (let i = 0; i < videoLinks.length; i++) {
     videoLinks[i].onclick = setVideo;
   }
-  video.addEventListener("ended", endedHandler, false);
-  video.addEventListener9("play", processFrame, false); //when video plays, calls this function
+  video.addEventListener("ended", endedHandler, false);//when video ends, endedHandler is called
+  video.addEventListener("play", processFrame, false); //when video plays, calls this function
   pushUnpushButtons("video1", []);
   pushUnpushButtons("normal", []);
   //helper function to visually depress the video button and normal(no filter) button in the interface

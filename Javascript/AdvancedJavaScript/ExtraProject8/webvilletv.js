@@ -4,12 +4,12 @@ let video; //hold a ref to the video element
 
 window.onload = function () {
   playlist = ["video/preroll", "video/areyoupopular", "video/destinationearth"];
-  video = document.getElementById("video");
+  video = document.getElementById("video");//grab video element
   video.addEventListener("ended", nextVideo, false); //nextVideo is function called when the event happens
   //add eventlistener for the video ended event
   video.src = playlist[position] + getFormatExtension();
   video.load();
-  video.play();
+  video.play();//load the video and play it
   alert("Playing " + video.currentSrc);
   video.addEventListener("error", errorHandler, false)
 };
@@ -24,7 +24,7 @@ function errorHandler() {
  
 
 function nextVideo() {
-  position++;
+  position++;//increment the position in the playlist array
   if (position >= playlist.length) {
     position = 0;
     //if we hit the end of the list, we loop around by setting position to 0
