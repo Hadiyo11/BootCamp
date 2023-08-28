@@ -8,7 +8,7 @@ const express = require("express"),
   layouts = require("express-ejs-layouts"),
   mongoose = require("mongoose"),
   Subscriber = require("./models/subscriber");
-
+//15.3 page 162
 mongoose.Promise = global.Promise;
 
 mongoose.connect(
@@ -45,14 +45,14 @@ app.use(homeController.logRequestPaths);
 
 app.get("/name", homeController.respondWithName);
 app.get("/items/:vegetable", homeController.sendReqParam);
-
+//listing 15.2 run in cmd node main and the open in browser
 app.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
   res.render("subscribers", { subscribers: req.data });
 });
 
 app.get("/", homeController.index);
 app.get("/courses", homeController.showCourses);
-
+//listing 15.5
 app.get("/contact", subscribersController.getSubscriptionPage);
 app.post("/subscribe", subscribersController.saveSubscriber);
 
