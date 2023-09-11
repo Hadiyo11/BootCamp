@@ -4,7 +4,7 @@ const port = 3000,
   http = require("http"),
   httpStatus = require("http-status-codes"),
   fs = require("fs");
-const getViewUrl = url => {
+const getViewUrl = (url) => {
   return `views${url}.html`;
 };
 http
@@ -16,7 +16,7 @@ http
         res.write("<h1>FILE NOT FOUND</h1>");
       } else {
         res.writeHead(httpStatus.OK, {
-          "Content-Type": "text/html"
+          "Content-Type": "text/html",
         });
         res.write(data);
       }
