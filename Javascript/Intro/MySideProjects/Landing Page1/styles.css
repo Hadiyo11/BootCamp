@@ -1,0 +1,33 @@
+body {
+    background: white;
+    color: black;
+}
+main {
+    max-width: 750px;
+    margin: 50px auto;
+  }
+  input {
+    background-color: whitesmoke;
+  }
+  .flex-mem {
+    display: flex;
+    justify-content: center;
+  }
+  .flex-mem-box {
+    background-color: #92869c;
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+    margin: 10px;
+    padding: 10px;
+    color: black;
+  }
+  footer {
+    text-align: center;
+  }
+  h1 {
+    text-align: center;
+  }
+  body {
+    text-align: center;
+  }
