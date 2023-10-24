@@ -8,7 +8,7 @@ const cors = require("cors");
 const app = express()
 
 var corsOptions = {
-    origin: "https://tutorial-app-3vx8.onrender.com/"
+    origin: "http://localhost:8081"
 };
 
 app.use(cors(corsOptions));
