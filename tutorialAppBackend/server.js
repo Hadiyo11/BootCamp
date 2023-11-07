@@ -8,7 +8,7 @@ const cors = require("cors");
 const app = express()
 
 var corsOptions = {
-    origin: "https://tutorials_app.netlify.app"
+    origin: "https://mytutorialapp.netlify.app"
 };
 
 app.use(cors(corsOptions));
