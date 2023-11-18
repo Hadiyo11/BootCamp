@@ -208,5 +208,5 @@ COPY (
     FROM us_counties_2010
     WHERE geo_name ILIKE '%mill%'
      )
-TO 'C:\YourDirectory\us_counties_mill_export.txt'
+TO 'C:\SQL\us_counties_mill_export.txt'
 WITH (FORMAT CSV, HEADER, DELIMITER '|');
